@@ -1,9 +1,9 @@
 <section class="nav-bar">
     <div class="content">
         <a href="{{ url('/') }}" class="logo" style="background: url() no-repeat;">
-        	<img src="{{ env('APP_URL') . '/storage/' . setting('site.logo') }}" alt="">
+        	<img src="{!! asset(Storage::disk(env( 'DISK', 'local'))->url(setting('site.logo'))) !!}" alt="">
         </a>
-
+        
         <nav class="nav">
             <div class="spacer">
 			    @foreach($items as $menu_item)
