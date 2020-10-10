@@ -1,7 +1,6 @@
 <section class="nav-bar">
     <div class="content">
-        <a href="{{ url('/') }}" class="logo" style="background: url() no-repeat;">
-        	<img src="{!! asset(Storage::disk(env( 'DISK', 'local'))->url(setting('site.logo'))) !!}" alt="">
+        <a href="{{ url('/') }}" class="logo" style="background: url('{!! Voyager::Image(setting('site.logo')) !!}') no-repeat;">
         </a>
         
         <nav class="nav">

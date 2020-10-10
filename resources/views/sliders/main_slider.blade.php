@@ -21,12 +21,12 @@
                         </div><!--main__slide-left-->
 
                         <div class="main__slide-photo">
-                            <img src="{!! asset(Storage::disk(env( 'DISK', 'local'))->url($slider_item->image)) !!}" alt="Слайд">
+                            <img src="{!! asset(Storage::disk(env( 'DISK', 'local'))->url($slider_item->image)) !!}" alt="{!! $slider_item->title !!}">
                         </div><!--main__slide-photo-->
 
                     </div><!--content-->
-
-                    <i class="main__slide-bg" style="background: url('{{ Storage::disk(env( 'DISK', 'local'))->url($slider_item->background) }}');"></i>
+                    
+                    <i class="main__slide-bg" style="background: url('{!! Voyager::Image($slider_item->background) !!}');"></i>
 
                 </div><!--main__slide-->
 
@@ -61,11 +61,11 @@
 
         <div class="main__control content">
             <span class="main__control-prev">
-                <svg class="svg-icon icon-slider-prev"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-slider-prev"></use></svg>
+                <svg class="svg-icon icon-slider-prev"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#{!! setting('site.slider_prev_arrow') !!}"></use></svg>
             </span>
 
             <span class="main__control-next">
-                <svg class="svg-icon icon-slider-next"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-slider-next"></use></svg>
+                <svg class="svg-icon icon-slider-next"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#{!! setting('site.slider_next_arrow') !!}"></use></svg>
             </span>
 
         </div><!--main__control-->
