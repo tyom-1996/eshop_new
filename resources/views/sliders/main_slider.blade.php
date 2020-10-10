@@ -25,7 +25,7 @@
                         </div><!--main__slide-photo-->
 
                     </div><!--content-->
-{{ '/storage/' . $slider_item->background }}
+
                     <i class="main__slide-bg" style="background: url('{{ Storage::disk(env( 'DISK', 'local'))->url($slider_item->background) }}');"></i>
 
                 </div><!--main__slide-->

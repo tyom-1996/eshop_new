@@ -2,7 +2,7 @@
 
 @section('content')
 
-    {{ slider('main slider', 'main_slider') }}
+    {{ slider('main slider', 'sliders.main_slider') }}
 
     <section class="action">
         <div class="content">
@@ -99,65 +99,7 @@
 
     </section><!--app-->
 
-    <section class="brands">
-        <div class="content">
-            <div class="brands__slider">
-                <ul class="brands__slides owl-carousel">
-                    <li class="brand va-middle">
-                        <img src="images/brands/logo-1.png" alt="Лого">
-                    </li>
-
-                    <li class="brand va-middle">
-                        <img src="images/brands/logo-2.png" alt="Лого">
-                    </li>
-
-                    <li class="brand va-middle">
-                        <img src="images/brands/logo-3.png" alt="Лого">
-                    </li>
-
-                    <li class="brand va-middle">
-                        <img src="images/brands/logo-4.png" alt="Лого">
-                    </li>
-
-                    <li class="brand va-middle">
-                        <img src="images/brands/logo-5.png" alt="Лого">
-                    </li>
-
-                    <li class="brand va-middle">
-                        <img src="images/brands/logo-1.png" alt="Лого">
-                    </li>
-
-                    <li class="brand va-middle">
-                        <img src="images/brands/logo-2.png" alt="Лого">
-                    </li>
-
-                    <li class="brand va-middle">
-                        <img src="images/brands/logo-3.png" alt="Лого">
-                    </li>
-
-                    <li class="brand va-middle">
-                        <img src="images/brands/logo-4.png" alt="Лого">
-                    </li>
-
-                    <li class="brand va-middle">
-                        <img src="images/brands/logo-5.png" alt="Лого">
-                    </li>
-
-                </ul>
-
-                <span class="brands__control-prev">
-                    <svg class="svg-icon icon-brands-prev"><use xlink:href="images/sprite.svg#icon-brands-prev"></use></svg>
-                </span>
-
-                <span class="brands__control-next">
-                    <svg class="svg-icon icon-brands-next"><use xlink:href="images/sprite.svg#icon-brands-next"></use></svg>
-                </span>
-
-            </div><!--brands__slider-->
-
-        </div><!--content-->
-
-    </section><!--brands-->
+    {{ slider('brands', 'sliders.brands') }}
 
     <section class="catalog content">
         <h2>

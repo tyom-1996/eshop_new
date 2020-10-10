@@ -2,7 +2,7 @@
     <div class="content spacer_top">
         <div class="footer__contacts">
             <a href="#" class="footer__logo" style="background: url() no-repeat;">
-                <img src="{{ env('APP_URL') . '/storage/' . setting('site.footer_logo') }}" alt="">
+                <img src="{!! asset(Storage::disk(env( 'DISK', 'local'))->url(setting('site.footer_logo'))) !!}" alt="">
             </a>
 
             @foreach($items as $menu_item)
