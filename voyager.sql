@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Окт 06 2020 г., 16:30
+-- Время создания: Окт 12 2020 г., 12:27
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.4.6
 
@@ -42,8 +42,54 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(1, NULL, 1, 'Category 1', 'category-1', '2020-10-06 10:06:54', '2020-10-06 10:06:54'),
-(2, NULL, 1, 'Category 2', 'category-2', '2020-10-06 10:06:54', '2020-10-06 10:06:54');
+(3, NULL, 1, 'slider', 'slider', '2020-10-07 10:00:30', '2020-10-08 09:01:46');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `category_products`
+--
+
+CREATE TABLE `category_products` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `category_products`
+--
+
+INSERT INTO `category_products` (`id`, `name`, `created_at`, `updated_at`, `image`) VALUES
+(1, 'компьютеры', '2020-10-08 04:09:00', '2020-10-08 04:25:30', 'category-products\\October2020\\dfKkaIqhF25aSvcW9KrW.png'),
+(2, 'ноутбуки', '2020-10-08 04:10:00', '2020-10-08 04:25:16', 'category-products\\October2020\\ohVtTN9cS982mu13G3Zi.png'),
+(3, 'комплектующие', '2020-10-08 04:10:00', '2020-10-08 04:25:51', 'category-products\\October2020\\gJWEx4HFBFxGayY7hijC.png'),
+(4, 'периферия', '2020-10-08 04:11:00', '2020-10-08 04:24:55', 'category-products\\October2020\\MSlL4as4VgWIGrD2MN9L.png'),
+(5, 'сервисный_центр', '2020-10-08 04:11:00', '2020-10-08 04:26:01', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `category_sliders`
+--
+
+CREATE TABLE `category_sliders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `status` varchar(10) CHARACTER SET utf8 DEFAULT 'publish',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `category_sliders`
+--
+
+INSERT INTO `category_sliders` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(2, 'main slider', 'publish', '2020-10-09 06:28:00', '2020-10-10 04:29:51'),
+(6, 'brands', 'publish', '2020-10-10 04:02:00', '2020-10-10 04:28:27');
 
 -- --------------------------------------------------------
 
@@ -93,28 +139,13 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (19, 3, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 4),
 (20, 3, 'display_name', 'text', 'Display Name', 1, 1, 1, 1, 1, 1, NULL, 5),
 (21, 1, 'role_id', 'text', 'Role', 1, 1, 1, 1, 1, 1, NULL, 9),
-(22, 4, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
+(22, 4, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '{}', 1),
 (23, 4, 'parent_id', 'select_dropdown', 'Parent', 0, 0, 1, 1, 1, 1, '{\"default\":\"\",\"null\":\"\",\"options\":{\"\":\"-- None --\"},\"relationship\":{\"key\":\"id\",\"label\":\"name\"}}', 2),
 (24, 4, 'order', 'text', 'Order', 1, 1, 1, 1, 1, 1, '{\"default\":1}', 3),
-(25, 4, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 4),
+(25, 4, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 4),
 (26, 4, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"name\"}}', 5),
-(27, 4, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 0, 0, 0, NULL, 6),
-(28, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 7),
-(29, 5, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(30, 5, 'author_id', 'text', 'Author', 1, 0, 1, 1, 0, 1, NULL, 2),
-(31, 5, 'category_id', 'text', 'Category', 1, 0, 1, 1, 1, 0, NULL, 3),
-(32, 5, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, NULL, 4),
-(33, 5, 'excerpt', 'text_area', 'Excerpt', 1, 0, 1, 1, 1, 1, NULL, 5),
-(34, 5, 'body', 'rich_text_box', 'Body', 1, 0, 1, 1, 1, 1, NULL, 6),
-(35, 5, 'image', 'image', 'Post Image', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"1000\",\"height\":\"null\"},\"quality\":\"70%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"250\"}}]}', 7),
-(36, 5, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\",\"forceUpdate\":true},\"validation\":{\"rule\":\"unique:posts,slug\"}}', 8),
-(37, 5, 'meta_description', 'text_area', 'Meta Description', 1, 0, 1, 1, 1, 1, NULL, 9),
-(38, 5, 'meta_keywords', 'text_area', 'Meta Keywords', 1, 0, 1, 1, 1, 1, NULL, 10),
-(39, 5, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"DRAFT\",\"options\":{\"PUBLISHED\":\"published\",\"DRAFT\":\"draft\",\"PENDING\":\"pending\"}}', 11),
-(40, 5, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, NULL, 12),
-(41, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 13),
-(42, 5, 'seo_title', 'text', 'SEO Title', 0, 1, 1, 1, 1, 1, NULL, 14),
-(43, 5, 'featured', 'checkbox', 'Featured', 1, 1, 1, 1, 1, 1, NULL, 15),
+(27, 4, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 0, 0, 0, '{}', 6),
+(28, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
 (44, 6, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
 (45, 6, 'author_id', 'text', 'Author', 1, 0, 0, 0, 0, 0, NULL, 2),
 (46, 6, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, NULL, 3),
@@ -126,7 +157,72 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (52, 6, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"INACTIVE\",\"options\":{\"INACTIVE\":\"INACTIVE\",\"ACTIVE\":\"ACTIVE\"}}', 9),
 (53, 6, 'created_at', 'timestamp', 'Created At', 1, 1, 1, 0, 0, 0, NULL, 10),
 (54, 6, 'updated_at', 'timestamp', 'Updated At', 1, 0, 0, 0, 0, 0, NULL, 11),
-(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12);
+(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12),
+(75, 15, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(76, 15, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(77, 15, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(78, 15, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(80, 15, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{}', 3),
+(89, 17, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(90, 17, 'cat_id', 'text', 'Cat Id', 1, 1, 1, 1, 1, 1, '{}', 2),
+(91, 17, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 4),
+(92, 17, 'specifications', 'text', 'Specifications', 1, 1, 1, 1, 1, 1, '{}', 5),
+(93, 17, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 6),
+(94, 17, 'availability', 'text', 'Availability', 1, 1, 1, 1, 1, 1, '{}', 7),
+(95, 17, 'price', 'text', 'Price', 0, 1, 1, 1, 1, 1, '{}', 8),
+(96, 17, 'status', 'text', 'Status', 1, 1, 1, 1, 1, 1, '{}', 10),
+(97, 17, 'count', 'text', 'Count', 0, 1, 1, 1, 1, 1, '{}', 11),
+(98, 17, 'code', 'text', 'Code', 1, 1, 1, 1, 1, 1, '{}', 12),
+(99, 17, 'tag', 'text', 'Tag', 1, 1, 1, 1, 1, 1, '{}', 13),
+(102, 17, 'product_belongsto_category_product_relationship', 'relationship', 'category_products', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\CategoryProduct\",\"table\":\"category_products\",\"type\":\"belongsTo\",\"column\":\"cat_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 15),
+(103, 18, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(104, 18, 'product_id', 'text', 'Product Id', 1, 1, 1, 1, 1, 1, '{}', 2),
+(105, 18, 'image', 'multiple_images', 'Image', 1, 1, 1, 1, 1, 1, '{}', 4),
+(106, 18, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 5),
+(107, 18, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 6),
+(110, 18, 'product_image_belongsto_product_relationship', 'relationship', 'product name', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Product\",\"table\":\"products\",\"type\":\"belongsTo\",\"column\":\"product_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
+(111, 19, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(112, 19, 'author_id', 'text', 'Author Id', 1, 1, 1, 1, 1, 1, '{}', 2),
+(113, 19, 'category_id', 'text', 'Category Id', 0, 1, 1, 1, 1, 1, '{}', 3),
+(114, 19, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{}', 4),
+(115, 19, 'seo_title', 'text', 'Seo Title', 0, 1, 1, 1, 1, 1, '{}', 5),
+(116, 19, 'excerpt', 'text', 'Excerpt', 0, 1, 1, 1, 1, 1, '{}', 6),
+(117, 19, 'body', 'text', 'Body', 1, 1, 1, 1, 1, 1, '{}', 7),
+(118, 19, 'image', 'text', 'Image', 0, 1, 1, 1, 1, 1, '{}', 8),
+(119, 19, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{}', 9),
+(120, 19, 'meta_description', 'text', 'Meta Description', 0, 1, 1, 1, 1, 1, '{}', 10),
+(121, 19, 'meta_keywords', 'text', 'Meta Keywords', 0, 1, 1, 1, 1, 1, '{}', 11),
+(122, 19, 'status', 'text', 'Status', 1, 1, 1, 1, 1, 1, '{}', 12),
+(123, 19, 'featured', 'text', 'Featured', 1, 1, 1, 1, 1, 1, '{}', 13),
+(124, 19, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 14),
+(125, 19, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 15),
+(126, 17, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{}', 3),
+(127, 17, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 14),
+(128, 17, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 16),
+(129, 17, 'old_price', 'text', 'Old Price', 0, 1, 1, 1, 1, 1, '{}', 9),
+(130, 21, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(131, 21, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{}', 2),
+(132, 21, 'info', 'text', 'Info', 0, 1, 1, 1, 1, 1, '{}', 3),
+(133, 21, 'button', 'text', 'Button', 0, 1, 1, 1, 1, 1, '{}', 4),
+(134, 21, 'background', 'image', 'Background', 0, 1, 1, 1, 1, 1, '{}', 5),
+(135, 21, 'image', 'image', 'Image', 1, 1, 1, 1, 1, 1, '{}', 6),
+(136, 21, 'fon_image', 'image', 'Fon Image', 0, 1, 1, 1, 1, 1, '{}', 7),
+(137, 21, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 8),
+(138, 21, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9),
+(139, 24, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(140, 24, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{}', 2),
+(141, 24, 'status', 'radio_btn', 'Status', 0, 1, 1, 1, 1, 1, '{\"default\":\"publish\",\"options\":{\"publish\":\"publish\",\"future\":\"future\"}}', 3),
+(142, 24, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(143, 24, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(144, 21, 'slider_belongsto_category_slider_relationship', 'relationship', 'category_sliders', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\CategorySlider\",\"table\":\"category_sliders\",\"type\":\"belongsTo\",\"column\":\"slider_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 10),
+(145, 21, 'slider_id', 'text', 'Slider Id', 1, 1, 1, 1, 1, 1, '{}', 8),
+(146, 26, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(147, 26, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(148, 26, 'status', 'radio_btn', 'Status', 0, 1, 1, 1, 1, 1, '{\"default\":\"publish\",\"options\":{\"publish\":\"publish\",\"future\":\"future\"}}', 3),
+(149, 26, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
+(150, 26, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
+(151, 26, 'tag_product_belongsto_category_product_relationship', 'relationship', 'category_products', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\CategoryProduct\",\"table\":\"category_products\",\"type\":\"belongsTo\",\"column\":\"cat_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 4),
+(152, 26, 'cat_id', 'text', 'Cat Id', 0, 1, 1, 1, 1, 1, '{}', 5);
 
 -- --------------------------------------------------------
 
@@ -160,9 +256,17 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', '', 1, 0, NULL, '2020-10-06 10:06:32', '2020-10-06 10:06:32'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2020-10-06 10:06:32', '2020-10-06 10:06:32'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2020-10-06 10:06:32', '2020-10-06 10:06:32'),
-(4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2020-10-06 10:06:52', '2020-10-06 10:06:52'),
-(5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2020-10-06 10:06:55', '2020-10-06 10:06:55'),
-(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2020-10-06 10:06:57', '2020-10-06 10:06:57');
+(4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-10-06 10:06:52', '2020-10-07 10:02:30'),
+(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2020-10-06 10:06:57', '2020-10-06 10:06:57'),
+(15, 'category_products', 'category-products', 'Category Product', 'Category Products', 'voyager-categories', 'App\\CategoryProduct', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-10-08 03:30:30', '2020-10-08 04:23:15'),
+(17, 'products', 'products', 'Product', 'Products', NULL, 'App\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-10-08 05:31:39', '2020-10-08 07:36:01'),
+(18, 'product_images', 'product-images', 'Product Image', 'Product Images', 'voyager-credit-cards', 'App\\ProductImage', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-10-08 05:49:47', '2020-10-09 05:41:54'),
+(19, 'posts', 'posts', 'Post', 'Posts', NULL, 'TCG\\Voyager\\Models\\Post', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-10-08 06:34:02', '2020-10-08 09:04:48'),
+(21, 'sliders', 'sliders', 'Slider', 'Sliders', 'voyager-credit-cards', 'App\\Slider', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-10-09 05:42:25', '2020-10-10 04:36:22'),
+(23, 'category_slider', 'category-slider', 'Category Slider', 'Category Sliders', 'voyager-categories', 'App\\CategorySlider', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-10-09 06:20:56', '2020-10-09 06:20:56'),
+(24, 'category_sliders', 'category-sliders', 'Category Slider', 'Category Sliders', 'voyager-categories', 'App\\CategorySlider', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-10-09 06:23:55', '2020-10-10 04:25:46'),
+(25, 'tag_product', 'tag-product', 'Tag Product', 'Tag Products', 'voyager-tag', 'App\\TagProduct', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-10-10 08:38:38', '2020-10-10 08:38:38'),
+(26, 'tag_products', 'tag-products', 'Tag Product', 'Tag Products', 'voyager-tag', 'App\\TagProduct', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-10-10 08:47:29', '2020-10-12 03:16:44');
 
 -- --------------------------------------------------------
 
@@ -197,7 +301,10 @@ CREATE TABLE `menus` (
 --
 
 INSERT INTO `menus` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '2020-10-06 10:06:35', '2020-10-06 10:06:35');
+(1, 'admin', '2020-10-06 10:06:35', '2020-10-06 10:06:35'),
+(3, 'header', '2020-10-07 04:16:13', '2020-10-07 04:16:13'),
+(4, 'footer', '2020-10-07 05:09:12', '2020-10-07 05:09:12'),
+(7, 'menu_top', '2020-10-07 06:20:02', '2020-10-07 06:20:34');
 
 -- --------------------------------------------------------
 
@@ -227,19 +334,52 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2020-10-06 10:06:35', '2020-10-06 10:06:35', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 5, '2020-10-06 10:06:35', '2020-10-06 10:06:35', 'voyager.media.index', NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 4, '2020-10-06 10:06:35', '2020-10-08 03:12:49', 'voyager.media.index', NULL),
 (3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 3, '2020-10-06 10:06:35', '2020-10-06 10:06:35', 'voyager.users.index', NULL),
 (4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 2, '2020-10-06 10:06:35', '2020-10-06 10:06:35', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2020-10-06 10:06:35', '2020-10-06 10:06:35', NULL, NULL),
-(6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 10, '2020-10-06 10:06:35', '2020-10-06 10:06:35', 'voyager.menus.index', NULL),
-(7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 11, '2020-10-06 10:06:35', '2020-10-06 10:06:35', 'voyager.database.index', NULL),
-(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 12, '2020-10-06 10:06:35', '2020-10-06 10:06:35', 'voyager.compass.index', NULL),
-(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 13, '2020-10-06 10:06:35', '2020-10-06 10:06:35', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 14, '2020-10-06 10:06:35', '2020-10-06 10:06:35', 'voyager.settings.index', NULL),
-(11, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 13, '2020-10-06 10:06:41', '2020-10-06 10:06:41', 'voyager.hooks', NULL),
-(12, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 8, '2020-10-06 10:06:53', '2020-10-06 10:06:53', 'voyager.categories.index', NULL),
-(13, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 6, '2020-10-06 10:06:56', '2020-10-06 10:06:56', 'voyager.posts.index', NULL),
-(14, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 7, '2020-10-06 10:06:58', '2020-10-06 10:06:58', 'voyager.pages.index', NULL);
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 11, '2020-10-06 10:06:35', '2020-10-10 08:43:24', NULL, NULL),
+(6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2020-10-06 10:06:35', '2020-10-08 03:12:49', 'voyager.menus.index', NULL),
+(7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2020-10-06 10:06:35', '2020-10-08 03:12:49', 'voyager.database.index', NULL),
+(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2020-10-06 10:06:35', '2020-10-08 03:12:49', 'voyager.compass.index', NULL),
+(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2020-10-06 10:06:35', '2020-10-08 03:12:50', 'voyager.bread.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 12, '2020-10-06 10:06:35', '2020-10-10 08:43:25', 'voyager.settings.index', NULL),
+(11, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2020-10-06 10:06:41', '2020-10-08 03:12:50', 'voyager.hooks', NULL),
+(12, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 9, '2020-10-06 10:06:53', '2020-10-09 06:24:33', 'voyager.categories.index', NULL),
+(14, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 8, '2020-10-06 10:06:58', '2020-10-09 06:24:33', 'voyager.pages.index', NULL),
+(15, 3, 'КОМПЬЮТЕРЫ', '/computers', '_self', '-', '#ffffff', NULL, 1, '2020-10-07 04:18:54', '2020-10-07 08:20:40', NULL, ''),
+(16, 3, 'НОУТБУКИ', '/laptop', '_self', NULL, '#ffffff', NULL, 2, '2020-10-07 05:54:59', '2020-10-07 08:29:48', NULL, ''),
+(17, 3, 'КОМПЛЕКТУЮЩИЕ', '/accessories', '_self', NULL, '#ffffff', NULL, 3, '2020-10-07 05:55:36', '2020-10-07 08:29:48', NULL, ''),
+(18, 3, 'ПЕРИФИРИЯ', '/peripheral', '_self', NULL, '#ffffff', NULL, 4, '2020-10-07 05:56:51', '2020-10-07 08:29:48', NULL, ''),
+(19, 3, 'СЕРВИСНЫЙ ЦЕНТР', '/service_center', '_self', NULL, '#ffffff', NULL, 5, '2020-10-07 05:57:37', '2020-10-07 08:55:33', NULL, ''),
+(20, 7, 'phone', '', '_self', NULL, '#ffffff', NULL, 1, '2020-10-07 06:21:21', '2020-10-07 08:20:02', NULL, ''),
+(22, 7, '+ 7 (777) 307 82 99', '+77773078299', '_self', NULL, '#ffffff', 20, 1, '2020-10-07 06:26:13', '2020-10-07 08:20:10', NULL, ''),
+(23, 7, '+ 7 (707) 199 11 69', '+77071991169', '_self', NULL, '#ffffff', 20, 2, '2020-10-07 06:28:57', '2020-10-07 08:20:17', NULL, ''),
+(24, 7, 'Напишите нам в WhatsApp', 'https://www.whatsapp.com/', '_self', NULL, '#ffffff', NULL, 19, '2020-10-07 07:45:08', '2020-10-07 08:20:26', NULL, ''),
+(25, 4, '+7 777 307 82 99', '+77773078299', '_self', 'tel', '#ffffff', NULL, 1, '2020-10-07 08:13:04', '2020-10-07 08:30:02', NULL, ''),
+(26, 4, 'Понедельник - Пятница С 10:00 до 19:00    Суббота - Воскресенье С 11:00 до 17:00', '', '_self', 'icon-time', '#ffffff', NULL, 2, '2020-10-07 08:24:09', '2020-10-07 08:51:20', NULL, ''),
+(27, 4, 'Абая проспект, 138/2 3 этаж; 4 офис         Бостандыкский район, Алматы, 050046/A15H5P6', '', '_self', 'icon-mark', '#ffffff', NULL, 3, '2020-10-07 08:24:41', '2020-10-07 08:51:01', NULL, ''),
+(28, 4, 'КАТЕГОРИИ', '', '_self', 'categorias', '#ffffff', NULL, 4, '2020-10-07 08:27:34', '2020-10-07 08:41:35', NULL, ''),
+(29, 4, 'Компьютеры', '/computers', '_self', NULL, '#000000', 28, 1, '2020-10-07 08:29:58', '2020-10-07 08:30:02', NULL, ''),
+(30, 4, 'ИНФОРМАЦИЯ', '', '_self', 'information', '#000000', NULL, 5, '2020-10-07 08:30:22', '2020-10-07 08:49:31', NULL, ''),
+(31, 4, 'О нас', '', '_self', NULL, '#000000', 30, 1, '2020-10-07 08:30:36', '2020-10-07 08:30:49', NULL, ''),
+(32, 4, 'Комплектующие', '/accessories', '_self', NULL, '#000000', 28, 2, '2020-10-07 08:54:09', '2020-10-07 08:55:50', NULL, ''),
+(33, 4, 'Ноутбуки', '/laptop', '_self', NULL, '#000000', 28, 3, '2020-10-07 08:54:41', '2020-10-07 08:55:52', NULL, ''),
+(34, 4, 'Перифирия', '/peripheral', '_self', NULL, '#000000', 28, 4, '2020-10-07 08:55:06', '2020-10-07 08:55:55', NULL, ''),
+(35, 4, 'Сервисный центр', '/service_center', '_self', NULL, '#000000', 28, 5, '2020-10-07 08:55:42', '2020-10-07 08:55:59', NULL, ''),
+(36, 4, 'Информация о доставке', '/information_about_delivery', '_self', NULL, '#000000', 30, 2, '2020-10-07 08:56:56', '2020-10-07 08:57:05', NULL, ''),
+(37, 4, 'Политика безопасности', '/security_policy', '_self', NULL, '#000000', 30, 3, '2020-10-07 08:57:55', '2020-10-07 08:59:38', NULL, ''),
+(38, 4, 'Условия соглашения', '/terms_of_agreement', '_self', NULL, '#000000', 30, 4, '2020-10-07 08:58:38', '2020-10-07 08:59:40', NULL, ''),
+(39, 4, 'Личный кабинет', '/personal_area', '_self', NULL, '#000000', 30, 5, '2020-10-07 08:59:07', '2020-10-07 08:59:47', NULL, ''),
+(40, 4, 'История заказов', '/order_history', '_self', NULL, '#000000', 30, 6, '2020-10-07 08:59:33', '2020-10-07 08:59:50', NULL, ''),
+(41, 4, 'МЫ НА КАРТЕ', '', '_self', 'map', '#000000', NULL, 20, '2020-10-07 09:00:25', '2020-10-07 09:00:25', NULL, ''),
+(46, 1, 'Category Products', '', '_self', 'voyager-categories', '#000000', 56, 3, '2020-10-08 03:30:30', '2020-10-10 08:43:24', 'voyager.category-products.index', 'null'),
+(47, 1, 'Products', '', '_self', 'voyager-bag', '#000000', 56, 1, '2020-10-08 05:31:39', '2020-10-10 08:43:21', 'voyager.products.index', 'null'),
+(48, 1, 'Product Images', '', '_self', 'voyager-images', '#000000', 56, 2, '2020-10-08 05:49:47', '2020-10-10 08:43:22', 'voyager.product-images.index', 'null'),
+(49, 1, 'Posts', '', '_self', 'voyager-news', '#000000', NULL, 7, '2020-10-08 06:34:02', '2020-10-09 06:24:33', 'voyager.posts.index', 'null'),
+(51, 1, 'Sliders', '', '_self', 'voyager-credit-cards', NULL, NULL, 5, '2020-10-09 05:42:25', '2020-10-09 05:43:58', 'voyager.sliders.index', NULL),
+(54, 1, 'Category Sliders', '', '_self', 'voyager-categories', '#000000', NULL, 6, '2020-10-09 06:23:55', '2020-10-09 06:24:58', 'voyager.category-sliders.index', 'null'),
+(56, 1, 'Products Settings', '', '_self', 'voyager-settings', '#000000', NULL, 10, '2020-10-10 08:41:29', '2020-10-10 08:44:00', NULL, ''),
+(57, 1, 'Tag Products', '', '_self', 'voyager-tag', '#000000', 56, 4, '2020-10-10 08:47:29', '2020-10-10 08:58:00', 'voyager.tag-products.index', 'null');
 
 -- --------------------------------------------------------
 
@@ -376,16 +516,56 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (29, 'edit_categories', 'categories', '2020-10-06 10:06:53', '2020-10-06 10:06:53'),
 (30, 'add_categories', 'categories', '2020-10-06 10:06:53', '2020-10-06 10:06:53'),
 (31, 'delete_categories', 'categories', '2020-10-06 10:06:53', '2020-10-06 10:06:53'),
-(32, 'browse_posts', 'posts', '2020-10-06 10:06:56', '2020-10-06 10:06:56'),
-(33, 'read_posts', 'posts', '2020-10-06 10:06:57', '2020-10-06 10:06:57'),
-(34, 'edit_posts', 'posts', '2020-10-06 10:06:57', '2020-10-06 10:06:57'),
-(35, 'add_posts', 'posts', '2020-10-06 10:06:57', '2020-10-06 10:06:57'),
-(36, 'delete_posts', 'posts', '2020-10-06 10:06:57', '2020-10-06 10:06:57'),
 (37, 'browse_pages', 'pages', '2020-10-06 10:06:58', '2020-10-06 10:06:58'),
 (38, 'read_pages', 'pages', '2020-10-06 10:06:58', '2020-10-06 10:06:58'),
 (39, 'edit_pages', 'pages', '2020-10-06 10:06:58', '2020-10-06 10:06:58'),
 (40, 'add_pages', 'pages', '2020-10-06 10:06:58', '2020-10-06 10:06:58'),
-(41, 'delete_pages', 'pages', '2020-10-06 10:06:58', '2020-10-06 10:06:58');
+(41, 'delete_pages', 'pages', '2020-10-06 10:06:58', '2020-10-06 10:06:58'),
+(57, 'browse_category_products', 'category_products', '2020-10-08 03:30:30', '2020-10-08 03:30:30'),
+(58, 'read_category_products', 'category_products', '2020-10-08 03:30:30', '2020-10-08 03:30:30'),
+(59, 'edit_category_products', 'category_products', '2020-10-08 03:30:30', '2020-10-08 03:30:30'),
+(60, 'add_category_products', 'category_products', '2020-10-08 03:30:30', '2020-10-08 03:30:30'),
+(61, 'delete_category_products', 'category_products', '2020-10-08 03:30:30', '2020-10-08 03:30:30'),
+(62, 'browse_products', 'products', '2020-10-08 05:31:39', '2020-10-08 05:31:39'),
+(63, 'read_products', 'products', '2020-10-08 05:31:39', '2020-10-08 05:31:39'),
+(64, 'edit_products', 'products', '2020-10-08 05:31:39', '2020-10-08 05:31:39'),
+(65, 'add_products', 'products', '2020-10-08 05:31:39', '2020-10-08 05:31:39'),
+(66, 'delete_products', 'products', '2020-10-08 05:31:39', '2020-10-08 05:31:39'),
+(67, 'browse_product_images', 'product_images', '2020-10-08 05:49:47', '2020-10-08 05:49:47'),
+(68, 'read_product_images', 'product_images', '2020-10-08 05:49:47', '2020-10-08 05:49:47'),
+(69, 'edit_product_images', 'product_images', '2020-10-08 05:49:47', '2020-10-08 05:49:47'),
+(70, 'add_product_images', 'product_images', '2020-10-08 05:49:47', '2020-10-08 05:49:47'),
+(71, 'delete_product_images', 'product_images', '2020-10-08 05:49:47', '2020-10-08 05:49:47'),
+(72, 'browse_posts', 'posts', '2020-10-08 06:34:02', '2020-10-08 06:34:02'),
+(73, 'read_posts', 'posts', '2020-10-08 06:34:02', '2020-10-08 06:34:02'),
+(74, 'edit_posts', 'posts', '2020-10-08 06:34:02', '2020-10-08 06:34:02'),
+(75, 'add_posts', 'posts', '2020-10-08 06:34:02', '2020-10-08 06:34:02'),
+(76, 'delete_posts', 'posts', '2020-10-08 06:34:02', '2020-10-08 06:34:02'),
+(82, 'browse_sliders', 'sliders', '2020-10-09 05:42:25', '2020-10-09 05:42:25'),
+(83, 'read_sliders', 'sliders', '2020-10-09 05:42:25', '2020-10-09 05:42:25'),
+(84, 'edit_sliders', 'sliders', '2020-10-09 05:42:25', '2020-10-09 05:42:25'),
+(85, 'add_sliders', 'sliders', '2020-10-09 05:42:25', '2020-10-09 05:42:25'),
+(86, 'delete_sliders', 'sliders', '2020-10-09 05:42:25', '2020-10-09 05:42:25'),
+(92, 'browse_category_slider', 'category_slider', '2020-10-09 06:20:56', '2020-10-09 06:20:56'),
+(93, 'read_category_slider', 'category_slider', '2020-10-09 06:20:56', '2020-10-09 06:20:56'),
+(94, 'edit_category_slider', 'category_slider', '2020-10-09 06:20:56', '2020-10-09 06:20:56'),
+(95, 'add_category_slider', 'category_slider', '2020-10-09 06:20:56', '2020-10-09 06:20:56'),
+(96, 'delete_category_slider', 'category_slider', '2020-10-09 06:20:56', '2020-10-09 06:20:56'),
+(97, 'browse_category_sliders', 'category_sliders', '2020-10-09 06:23:55', '2020-10-09 06:23:55'),
+(98, 'read_category_sliders', 'category_sliders', '2020-10-09 06:23:55', '2020-10-09 06:23:55'),
+(99, 'edit_category_sliders', 'category_sliders', '2020-10-09 06:23:55', '2020-10-09 06:23:55'),
+(100, 'add_category_sliders', 'category_sliders', '2020-10-09 06:23:55', '2020-10-09 06:23:55'),
+(101, 'delete_category_sliders', 'category_sliders', '2020-10-09 06:23:55', '2020-10-09 06:23:55'),
+(102, 'browse_tag_product', 'tag_product', '2020-10-10 08:38:38', '2020-10-10 08:38:38'),
+(103, 'read_tag_product', 'tag_product', '2020-10-10 08:38:38', '2020-10-10 08:38:38'),
+(104, 'edit_tag_product', 'tag_product', '2020-10-10 08:38:38', '2020-10-10 08:38:38'),
+(105, 'add_tag_product', 'tag_product', '2020-10-10 08:38:38', '2020-10-10 08:38:38'),
+(106, 'delete_tag_product', 'tag_product', '2020-10-10 08:38:38', '2020-10-10 08:38:38'),
+(107, 'browse_tag_products', 'tag_products', '2020-10-10 08:47:29', '2020-10-10 08:47:29'),
+(108, 'read_tag_products', 'tag_products', '2020-10-10 08:47:29', '2020-10-10 08:47:29'),
+(109, 'edit_tag_products', 'tag_products', '2020-10-10 08:47:29', '2020-10-10 08:47:29'),
+(110, 'add_tag_products', 'tag_products', '2020-10-10 08:47:29', '2020-10-10 08:47:29'),
+(111, 'delete_tag_products', 'tag_products', '2020-10-10 08:47:29', '2020-10-10 08:47:29');
 
 -- --------------------------------------------------------
 
@@ -434,16 +614,56 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (29, 1),
 (30, 1),
 (31, 1),
-(32, 1),
-(33, 1),
-(34, 1),
-(35, 1),
-(36, 1),
 (37, 1),
 (38, 1),
 (39, 1),
 (40, 1),
-(41, 1);
+(41, 1),
+(57, 1),
+(58, 1),
+(59, 1),
+(60, 1),
+(61, 1),
+(62, 1),
+(63, 1),
+(64, 1),
+(65, 1),
+(66, 1),
+(67, 1),
+(68, 1),
+(69, 1),
+(70, 1),
+(71, 1),
+(72, 1),
+(73, 1),
+(74, 1),
+(75, 1),
+(76, 1),
+(82, 1),
+(83, 1),
+(84, 1),
+(85, 1),
+(86, 1),
+(92, 1),
+(93, 1),
+(94, 1),
+(95, 1),
+(96, 1),
+(97, 1),
+(98, 1),
+(99, 1),
+(100, 1),
+(101, 1),
+(102, 1),
+(103, 1),
+(104, 1),
+(105, 1),
+(106, 1),
+(107, 1),
+(108, 1),
+(109, 1),
+(110, 1),
+(111, 1);
 
 -- --------------------------------------------------------
 
@@ -478,6 +698,58 @@ INSERT INTO `posts` (`id`, `author_id`, `category_id`, `title`, `seo_title`, `ex
 (2, 0, NULL, 'My Sample Post', NULL, 'This is the excerpt for the sample Post', '<p>This is the body for the sample post, which includes the body.</p>\r\n                <h2>We can use all kinds of format!</h2>\r\n                <p>And include a bunch of other stuff.</p>', 'posts/post2.jpg', 'my-sample-post', 'Meta Description for sample post', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-10-06 10:06:57', '2020-10-06 10:06:57'),
 (3, 0, NULL, 'Latest Post', NULL, 'This is the excerpt for the latest post', '<p>This is the body for the latest post</p>', 'posts/post3.jpg', 'latest-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-10-06 10:06:57', '2020-10-06 10:06:57'),
 (4, 0, NULL, 'Yarr Post', NULL, 'Reef sails nipperkin bring a spring upon her cable coffer jury mast spike marooned Pieces of Eight poop deck pillage. Clipper driver coxswain galleon hempen halter come about pressgang gangplank boatswain swing the lead. Nipperkin yard skysail swab lanyard Blimey bilge water ho quarter Buccaneer.', '<p>Swab deadlights Buccaneer fire ship square-rigged dance the hempen jig weigh anchor cackle fruit grog furl. Crack Jennys tea cup chase guns pressgang hearties spirits hogshead Gold Road six pounders fathom measured fer yer chains. Main sheet provost come about trysail barkadeer crimp scuttle mizzenmast brig plunder.</p>\r\n<p>Mizzen league keelhaul galleon tender cog chase Barbary Coast doubloon crack Jennys tea cup. Blow the man down lugsail fire ship pinnace cackle fruit line warp Admiral of the Black strike colors doubloon. Tackle Jack Ketch come about crimp rum draft scuppers run a shot across the bow haul wind maroon.</p>\r\n<p>Interloper heave down list driver pressgang holystone scuppers tackle scallywag bilged on her anchor. Jack Tar interloper draught grapple mizzenmast hulk knave cable transom hogshead. Gaff pillage to go on account grog aft chase guns piracy yardarm knave clap of thunder.</p>', 'posts/post4.jpg', 'yarr-post', 'this be a meta descript', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2020-10-06 10:06:57', '2020-10-06 10:06:57');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `cat_id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `specifications` varchar(1000) CHARACTER SET utf8 NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `availability` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `price` int(11) DEFAULT 1,
+  `status` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'publish',
+  `count` int(11) DEFAULT 1,
+  `code` int(11) NOT NULL,
+  `tag` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `old_price` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `products`
+--
+
+INSERT INTO `products` (`id`, `cat_id`, `name`, `specifications`, `description`, `availability`, `price`, `status`, `count`, `code`, `tag`, `title`, `old_price`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Ноутбук Lenovo G505s', 'устройство начального уровня, и в попытке сделать цену ещё ниже производители продают свой аппарат без предустановленной ОС Windows.  Созданный из чёрного пластика, необычайно тонкий ноутбук, габариты которого равны 26x38x2,6 мм, а вес составляет 2,4 кг, оснащён глянцевым 15,6-дюймовым TN+Film-экраном с разрешением 1366x768.  Lenovo G505s базируется на процессоре A10-5750M от AMD. Чип оснащён 4-мя ядрами и 4-Мб кэшем L2, построен на Trinity-архитектуре и способен разгоняться до 3,5 ГГц, при этом в обычном режиме работая на частоте 2,5 ГГц. Производительности агрегату добавляет 4-Гб модуль оперативной памяти DDR3L-типа с частотой шины 1600 МГц. При необходимости этот объём можно расширить до 16 Гб. А вот расширять объём жёсткого диска понадобится вряд ли, ведь его ёмкость составляет 1 Тб. Порадует ценителей и 2-Гб дискретная графика.  В комплекте к Lenovo G505s вы получите пакет документов, кабель и блок питания, диск с программным обеспечением и аккумулятор.  РЕКОМЕНДУЕМ', 'Общие характеристики', 'В наличии', 4554, 'publish', 545, 867468, 'new', 'USB-гарнитура с настраиваемой                     Razer Chroma подсветкой ушек', 567878, NULL, '2020-10-08 07:36:54');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `product_images`
+--
+
+CREATE TABLE `product_images` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `image` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `product_images`
+--
+
+INSERT INTO `product_images` (`id`, `product_id`, `image`, `created_at`, `updated_at`) VALUES
+(1, 1, '[\"product-images\\\\October2020\\\\XJaopQn4VSIWRe9ryHzK.png\"]', '2020-10-08 05:56:00', '2020-10-09 04:23:56');
 
 -- --------------------------------------------------------
 
@@ -523,16 +795,85 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`, `order`, `group`) VALUES
-(1, 'site.title', 'Site Title', 'Site Title', '', 'text', 1, 'Site'),
-(2, 'site.description', 'Site Description', 'Site Description', '', 'text', 2, 'Site'),
-(3, 'site.logo', 'Site Logo', '', '', 'image', 3, 'Site'),
-(4, 'site.google_analytics_tracking_id', 'Google Analytics Tracking ID', '', '', 'text', 4, 'Site'),
+(1, 'site.title', 'Site Title', 'E-shop', '', 'text', 1, 'Site'),
+(2, 'site.description', 'Site Description', 'Site Description', '', 'text', 3, 'Site'),
+(3, 'site.logo', 'Site Logo', 'settings\\October2020\\0d5omasxgMUhP65mlOOQ.png', '', 'image', 2, 'Site'),
+(4, 'admin.google_analytics_tracking_id', 'Google Analytics Tracking ID', NULL, '', 'text', 4, 'Admin'),
 (5, 'admin.bg_image', 'Admin Background Image', '', '', 'image', 5, 'Admin'),
 (6, 'admin.title', 'Admin Title', 'Voyager', '', 'text', 1, 'Admin'),
 (7, 'admin.description', 'Admin Description', 'Welcome to Voyager. The Missing Admin for Laravel', '', 'text', 2, 'Admin'),
 (8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
 (9, 'admin.icon_image', 'Admin Icon Image', '', '', 'image', 4, 'Admin'),
-(10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', '', '', 'text', 1, 'Admin');
+(10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin'),
+(12, 'site.footer_logo', 'Footer Logo', 'settings\\October2020\\BUPWi1qUnwgwC2Bzobgw.png', NULL, 'image', 6, 'Site'),
+(22, 'site.slider_prev_arrow', 'Slider Prev Arrow', 'icon-brands-prev', '{\r\n    \"default\" : \"icon-brands-prev\",\r\n    \"options\": { \r\n        \"icon-brands-prev\": \"Left\", \r\n        \"icon-left-prev-2\": \"Left 2\",\r\n        \"icon-left-prev-3\": \"Left 3\" \r\n    }\r\n}', 'select_dropdown', 7, 'Site'),
+(23, 'site.slider_next_arrow', 'Slider Next Arrow', 'icon-brands-next', '{\r\n    \"default\" : \"icon-brands-next\",\r\n    \"options\" : {\r\n        \"icon-brands-next\": \"Right\",\r\n        \"icon-right-prev-2\": \"Right 2\",\r\n        \"icon-right-prev-3\": \"Right 3\"\r\n    }\r\n}', 'select_dropdown', 8, 'Site');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `sliders`
+--
+
+CREATE TABLE `sliders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `info` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `button` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `background` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `fon_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slider_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `sliders`
+--
+
+INSERT INTO `sliders` (`id`, `title`, `info`, `button`, `background`, `image`, `fon_image`, `slider_id`, `created_at`, `updated_at`) VALUES
+(1, 'сборка компьютера', 'мы поможем подобрать сборку по вашим параметрам', 'подробнее', 'sliders\\October2020\\10yaefz9bNw4Nr1k78mk.png', 'sliders\\October2020\\wVMZRfdmeUvCWDYuI5uu.png', 'sliders\\October2020\\pkLMtgSSt28WXzzO6BrP.png', 2, '2020-10-09 06:49:00', '2020-10-09 06:50:10'),
+(2, 'сборка компьютера 2', 'мы поможем подобрать сборку по вашим параметрам', 'подробнее', 'sliders\\October2020\\coZP5AnrvpagLm70JUEP.png', 'sliders\\October2020\\l0CRbdeBlQmQPMKjV653.png', 'sliders\\October2020\\oCsRkwyf1ZY7Do64fyOx.png', 2, '2020-10-09 09:09:52', '2020-10-09 09:09:52'),
+(3, 'gigabyte', NULL, NULL, NULL, 'sliders\\October2020\\CdGTkyZHdZueFn7xo002.png', NULL, 6, '2020-10-10 04:34:00', '2020-10-10 04:37:04'),
+(4, 'gamemax', NULL, NULL, NULL, 'sliders\\October2020\\ZVZaGdMKANhENNQyM0RG.png', NULL, 6, '2020-10-10 05:25:11', '2020-10-10 05:25:11'),
+(5, 'asus', NULL, NULL, NULL, 'sliders\\October2020\\ymouwyJOCpyq6lhgYRa3.png', NULL, 6, '2020-10-10 05:25:40', '2020-10-10 05:25:40'),
+(6, 'asrock', NULL, NULL, NULL, 'sliders\\October2020\\0DX62ulAZ1HnjTE20g4j.png', NULL, 6, '2020-10-10 05:26:05', '2020-10-10 05:26:05'),
+(7, 'intel', NULL, NULL, NULL, 'sliders\\October2020\\g6Lyhbjgc0ry251zdQqX.png', NULL, 6, '2020-10-10 05:26:21', '2020-10-10 05:26:21');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tag_products`
+--
+
+CREATE TABLE `tag_products` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'publish',
+  `cat_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tag_products`
+--
+
+INSERT INTO `tag_products` (`id`, `name`, `status`, `cat_id`, `created_at`, `updated_at`) VALUES
+(1, 'игровые', 'publish', 1, NULL, '2020-10-12 03:17:01');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `test`
+--
+
+CREATE TABLE `test` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -646,6 +987,18 @@ ALTER TABLE `categories`
   ADD KEY `categories_parent_id_foreign` (`parent_id`);
 
 --
+-- Индексы таблицы `category_products`
+--
+ALTER TABLE `category_products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `category_sliders`
+--
+ALTER TABLE `category_sliders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `data_rows`
 --
 ALTER TABLE `data_rows`
@@ -722,6 +1075,18 @@ ALTER TABLE `posts`
   ADD UNIQUE KEY `posts_slug_unique` (`slug`);
 
 --
+-- Индексы таблицы `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `product_images`
+--
+ALTER TABLE `product_images`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `roles`
 --
 ALTER TABLE `roles`
@@ -734,6 +1099,24 @@ ALTER TABLE `roles`
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `settings_key_unique` (`key`);
+
+--
+-- Индексы таблицы `sliders`
+--
+ALTER TABLE `sliders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tag_products`
+--
+ALTER TABLE `tag_products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `test`
+--
+ALTER TABLE `test`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `translations`
@@ -766,19 +1149,31 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблицы `category_products`
+--
+ALTER TABLE `category_products`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT для таблицы `category_sliders`
+--
+ALTER TABLE `category_sliders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- AUTO_INCREMENT для таблицы `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT для таблицы `failed_jobs`
@@ -790,13 +1185,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT для таблицы `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
@@ -814,13 +1209,25 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT для таблицы `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `product_images`
+--
+ALTER TABLE `product_images`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`
@@ -832,7 +1239,25 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT для таблицы `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT для таблицы `sliders`
+--
+ALTER TABLE `sliders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT для таблицы `tag_products`
+--
+ALTER TABLE `tag_products`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `test`
+--
+ALTER TABLE `test`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `translations`
