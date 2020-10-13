@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('main_front/css/nouislider.min.css') }}">
     <link rel="stylesheet" href="{{ asset('main_front/css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('main_front/css/style.css') }}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <section class="page-wrap">
@@ -22,7 +23,6 @@
     </section>
 
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;key=AIzaSyDOhWZWMNUSIYxWqcIni33voP8yTbnjNXs"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="{{ asset('main_front/js/nouislider.min.js') }}"></script>
 	<script src="{{ asset('main_front/js/owl.carousel.min.js') }}"></script>
 	<script src="{{ asset('main_front/js/script.js') }}"></script>

@@ -1,5 +1,7 @@
 @if($items)
-    
+
+
+
 	<section class="main">
         <div class="main__slides owl-carousel">
 
@@ -20,9 +22,14 @@
 
                         </div><!--main__slide-left-->
 
-                        <div class="main__slide-photo">
+                        <div class="main__slide-photo" id="main__slide_photo_id_{{ preg_replace('/\s+/', '_', $slider_item->title . $slider_item->id) }}">
                             <img src="{!! asset(Storage::disk(env( 'DISK', 'local'))->url($slider_item->image)) !!}" alt="{!! $slider_item->title !!}">
                         </div><!--main__slide-photo-->
+
+                    {{--     <script type="text/javascript">
+                            $('#main__slide_photo_id_{{ preg_replace('/\s+/', '_', $slider_item->title . $slider_item->id) }}:after')
+                                .css('background', 'url({!! asset(Storage::disk(env( 'DISK', 'local'))->url($slider_item->fon_image)) !!})');
+                        </script> --}}
 
                     </div><!--content-->
                     
