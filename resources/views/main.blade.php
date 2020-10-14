@@ -20,20 +20,28 @@
         </h2>
 
         <div class="categories__list flex-container">
-            <div class="category category_1">
-                <a href="#" class="category__title">компьютеры</a>
-                <div class="category__links">
-                    <a href="#" class="category__link">игровые</a>
-                    <a href="#" class="category__link">офисные</a>
-                    <a href="#" class="category__link">эксклюзивные</a>
-                    <a href="#" class="category__link">Дизайнерам</a>
-                </div><!--category__links-->
+            @foreach ($categoris as $cat)
 
-                <i class="category__bg category__bg_1"></i>
+                @if (@count(json_decode($cat->tag_id)) > 0)
+                    <div class="category category_1">
 
-            </div><!--category-->
+                        <a href="{{ url('$cat->url') }}" class="category__title">{{ $cat->name }}</a>
+                        <div class="category__links">
+                            @foreach(json_decode($cat->tag_id) as $item => $tag)
+                                <a href="{{ url(App\Tags::where('id', $tag)->first('url')->url) }}" class="category__link">{{ App\Tags::where('id', $tag)->first('name')->name  }}</a>
+                            @endforeach
+                        </div><!--category__links-->
 
-            <div class="category category_2">
+                        <i class="category__bg category__bg_1" style="background: url('{!! Voyager::Image($cat->image) !!}');"></i>
+
+                    </div><!--category-->
+                @endif
+                
+            @endforeach
+
+
+
+            {{-- <div class="category category_2">
                 <a href="#" class="category__title">комплектующие</a>
                 <div class="category__links">
                     <a href="#" class="category__link">материнские платы</a>
@@ -76,7 +84,7 @@
 
                 <i class="category__bg category__bg_4"></i>
 
-            </div><!--category-->
+            </div><!--category--> --}}
 
         </div><!--categories__list-->
 
