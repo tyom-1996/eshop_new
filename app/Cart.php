@@ -5,20 +5,20 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\ProductImage;
 
-class Product extends Model
+
+class Cart extends Model
 {
-	protected $table = 'products';
+    protected $table    = 'cart';
+    public $timestamps  = false;
+    protected $fillable = [
+        'user_id', 'product_id',
+    ];
 
-	// protected $primaryKey = 'product_id';
-
-    protected $fillable = ['image'];
+  	protected $fillablei = ['image'];
 
     public function product_photo()
     {
         return $this->hasMany('App\ProductImage', 'product_id', 'id');
     }
-
-   
-
-    
 }
+

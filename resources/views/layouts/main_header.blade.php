@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <section class="nav-bar">
     <div class="content">
         <a href="{{ url('/') }}" class="logo" style="background: url('{!! Voyager::Image(setting('site.logo')) !!}') no-repeat;">
@@ -16,7 +17,7 @@
                 <svg class="svg-icon icon-search pos-center"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-search"></use></svg>
             </a>
 
-            <a href="#" class="nav-bar__link">
+            <a href="/cart" class="nav-bar__link">
                 <i class="nav-bar__link-count">3</i>
                 <svg class="svg-icon icon-basket pos-center"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-basket"></use></svg>
             </a>

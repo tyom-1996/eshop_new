@@ -1,4 +1,11 @@
 $(document).ready(function() {
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     var mainSlider = $('.main__slides').owlCarousel({
         smartSpeed: 900,
         loop:true,
@@ -200,3 +207,19 @@ function initMainMap() {
 if($('#map').index() != -1) {
     initMainMap();
 }
+
+
+ $('.catalog__item-add').click(function() {
+       var val = $(this).val();
+
+       $.ajax({
+          type: "POST",
+          url: "/cart",
+          data: {id: val},
+          success: function(html){
+            $("#results").append(html);
+          }
+        });
+
+
+    });

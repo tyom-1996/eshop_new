@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,7 @@ Route::get('/', 'ManagerController@index');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::get("/cart","CartController@cart");
+Route::post("/cart","CartController@cart_add");
+Route::get("/comparison","ComparisonController@comparison");

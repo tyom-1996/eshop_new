@@ -21,7 +21,7 @@
         </div><!--header__left-->
 
         <div class="header__right">
-            <a href="#" class="header__link">
+            <a href="/comparison" class="header__link">
                 <svg class="svg-icon icon-diff"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-diff"></use></svg>
                 <span>Сравнение товаров (0)</span>
             </a>
