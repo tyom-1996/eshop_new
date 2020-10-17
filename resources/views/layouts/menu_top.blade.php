@@ -26,7 +26,7 @@
                 <span>Сравнение товаров (0)</span>
             </a>
 
-            <a href="#" class="header__link">
+            <a href="/my-favorites" class="header__link">
                 <svg class="svg-icon icon-favorite"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-favorite"></use></svg>
                 <span>Мои закладки (0)</span>
             </a>

@@ -116,13 +116,13 @@
         <div class="catalog__list flex-container">
             @foreach ($products as $product)
 
-                @php
+               {{--  @php
                     $photo = json_decode($product->product_photo[0]->image);
-                @endphp
+                @endphp --}}
                 
                 <div class="catalog__item">
                     <a href="#" class="catalog__item-photo">
-                        <img src="{{ asset('/storage/' . $photo[0]) }}" alt="Фото">
+                        <img src="{{-- {{ asset('/storage/' . $photo[0]) }} --}}" alt="Фото">
                     </a>
 
                     <a href="#" class="catalog__item-title">

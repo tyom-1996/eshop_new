@@ -7,7 +7,7 @@
         <nav class="nav">
             <div class="spacer">
 			    @foreach($items as $menu_item)
-			        <a class="nav__link" href="{{ $menu_item->link() }}" >{{ $menu_item->title }}</a>
+			        <a class="nav__link" href="/catalog/{{ $menu_item->id }}" >{{ $menu_item->title }}</a>
 			    @endforeach
             </div><!--spacer-->
         </nav>

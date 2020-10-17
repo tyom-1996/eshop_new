@@ -25,3 +25,21 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get("/cart","CartController@cart");
 Route::post("/cart","CartController@cart_add");
 Route::get("/comparison","ComparisonController@comparison");
+Route::get("/personal_area","ProfilController@profile");
+Route::get("/order_history","OrderHistoryController@order_history");
+Route::get("/personal-password","PersonaPasswordController@repeat_password");
+Route::get("/my-favorites","MyFavoritesController@Myfavorites");
+
+Route::get("/computers","ProductController@MyProductComputers");
+Route::get("/laptop","ProductController@MyProductLaptop");
+Route::get("/accessories","ProductController@MyProductAccessories");
+Route::get("/catalog/{cat_id}","ProductController@MyProductPeripherals");
+
+// Route::get("/service_center","ProductController@MyProductService_center");
+
+
+
+
+
+
+

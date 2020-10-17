@@ -703,7 +703,7 @@ class Stringable
      */
     public function dd()
     {
-        $this->dump();
+        // $this->dump();
 
         exit(1);
     }
