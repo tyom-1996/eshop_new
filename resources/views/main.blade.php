@@ -116,13 +116,13 @@
         <div class="catalog__list flex-container">
             @foreach ($products as $product)
 
-               {{--  @php
-                    $photo = json_decode($product->product_photo[0]->image);
-                @endphp --}}
+                @php
+                    $photo = json_decode($product->photo)[0];
+                @endphp
                 
-                <div class="catalog__item">
+                <div class="catalog__item" data-value="{{ $product->id }}">
                     <a href="#" class="catalog__item-photo">
-                        <img src="{{-- {{ asset('/storage/' . $photo[0]) }} --}}" alt="Фото">
+                        <img src="{{ asset('/storage/' . $photo) }}" alt="Фото">
                     </a>
 
                     <a href="#" class="catalog__item-title">
@@ -148,7 +148,7 @@
                     <p class="catalog__item-price catalog__item-price_old">
                         {{ $product->old_price }} ₸
                     </p>
-                    <button value="{{$product->id}}" class="catalog__item-add">Добавить в корзину</button>
+                    <button class="catalog__item-add p_item_add">Добавить в корзину</button>
 
                     <div class="catalog__item-control">
                         <a href="#" class="catalog__item-link">

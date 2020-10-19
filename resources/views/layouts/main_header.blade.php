@@ -6,9 +6,13 @@
         
         <nav class="nav">
             <div class="spacer">
-			    @foreach($items as $menu_item)
-			        <a class="nav__link" href="/catalog/{{ $menu_item->id }}" >{{ $menu_item->title }}</a>
-			    @endforeach
+			    {{-- @foreach($items as $menu_item)
+			        <a class="nav__link" href="{{ $menu_item->link() }}" >{{ $menu_item->title }}</a>
+			    @endforeach --}}
+
+                @foreach(App\CategoryProduct::get() as $menu_item)
+                    <a class="nav__link" href="{{ url('/category/'.preg_replace('/\s+/', '_', $menu_item->name)) }}" >{{ $menu_item->name }}</a>
+                @endforeach
             </div><!--spacer-->
         </nav>
 

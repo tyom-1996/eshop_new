@@ -208,18 +208,3 @@ if($('#map').index() != -1) {
     initMainMap();
 }
 
-
- $('.catalog__item-add').click(function() {
-       var val = $(this).val();
-
-       $.ajax({
-          type: "POST",
-          url: "/cart",
-          data: {id: val},
-          success: function(html){
-            $("#results").append(html);
-          }
-        });
-
-
-    });

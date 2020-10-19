@@ -18,6 +18,12 @@ class Product extends Model
         return $this->hasMany('App\ProductImage', 'product_id', 'id');
     }
 
+
+    // public function product_category()
+    // {
+    //     return $this->hasMany('App\CategoryProduct', 'product_id', 'id');
+    // }
+
    
 
     

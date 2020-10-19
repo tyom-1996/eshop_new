@@ -34,32 +34,40 @@
             </aside>
 
             <div class="personal__content">
-                <form action=".php" class="personal__data">
+                <form action="{{ url('/sign_up') }}" method="post">
+                    {{ csrf_field() }}
+
                     <div class="personal__data-fields spacer_top">
                         <label class="form__label">
                             <span class="form__label-title">Фамилия</span>
-                            <input type="text" name="surname" class="form__field" placeholder="Введите фамилию">
+                            <span class="form__label-title" style="color: #132f509c;">{!! $errors->first('surname') !!}</span>
+                            <input type="text" name="surname" class="form__field"  value="{{ old('surname') }}" placeholder="Введите фамилию">
                         </label>
 
                         <label class="form__label">
                             <span class="form__label-title">Имя</span>
-                            <input type="text" name="name" class="form__field" placeholder="Введите имя">
+                            <span class="form__label-title" style="color: #132f509c;">{!! $errors->first('name') !!}</span>
+                            
+                            <input type="text" name="name" class="form__field" value="{{ old('name') }}" placeholder="Введите имя">
                         </label>
 
                         <label class="form__label">
                             <span class="form__label-title">Телефон</span>
-                            <input type="text" name="phone" class="form__field" placeholder="Номер телефона">
+                            <span class="form__label-title" style="color: #132f509c;">{!! $errors->first('tel') !!}</span>
+                            
+                            <input type="text" name="tel" class="form__field" value="{{ old('tel') }}" placeholder="Номер телефона">
                         </label>
 
                         <label class="form__label">
                             <span class="form__label-title">Почта</span>
-                            <input type="text" name="email" class="form__field" placeholder="Укажите почту">
+                            <span class="form__label-title" style="color: #132f509c;">{!! $errors->first('email') !!}</span>
+                            
+                            <input type="text" name="email" class="form__field" value="{{ old('email') }}" placeholder="Укажите почту">
                         </label>
 
                     </div><!--personal__data-fields-->
 
                     <button class="yellow-btn form__btn">Сохранить</button>
-
                 </form>
 
             </div><!--personal__content-->

@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
-   @section('content')
-
-
-
-
+@section('content')
 
     <section class="page content">
         <div class="pager">
@@ -37,18 +33,19 @@
 
 
 
- @foreach ($product as $cat)
-
+            @foreach ($product as $cat)
+                @php
+                    $photo = json_decode($cat->cat_product->photo)[0];
+                @endphp
                 <div class="basket__item">
                     <div class="basket__table-col">
                         <div class="basket__item-photo">
-
-                            <img class="pos-center" src="" alt="Ноутбук Lenovo G505s">
+                            <img class="pos-center" src="{{ asset('/storage/' . $photo) }}" alt="Ноутбук Lenovo G505s">
                         </div><!--basket__item-photo-->
 
                         <div class="basket__item-info">
                             <p class="basket__item-title">
-                                 {{$cat->name}}
+                                {{ $cat->cat_product->name }}
                             </p>
 
                             <p class="basket__item-param">
@@ -63,7 +60,7 @@
 
                     <div class="basket__table-col">
                         <p class="basket__item-status">
-                            {{$cat->availability}}
+                            {{ $cat->cat_product->availability }}
                         </p>
 
                     </div><!--basket__table-col-->
@@ -79,7 +76,7 @@
 
                     <div class="basket__table-col">
                         <p class="basket__item-price">
-                           {{$cat->price}}<span> ₸</span>
+                           {{ $cat->cat_product->price }}<span> ₸</span>
                         </p>
 
                         <span class="basket__item-delete">
@@ -90,10 +87,7 @@
 
                 </div><!--basket__item-->
 
-
-            </div><!--basket__table-->
-
-     @endforeach
+            @endforeach
 
 
             <div class="basket__result">
@@ -108,8 +102,6 @@
         </div><!--basket-->
 
     </section><!--page-->
-
-
 
 
 

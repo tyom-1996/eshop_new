@@ -10,30 +10,25 @@ class CartController extends Controller
 {
     public function cart()
     {
-    	$user_id = 1;
-
-    	$product_cat = Cart::where('user_id','=',$user_id)->first();
-
-
-    	$product = Product::where('id','=',$product_cat->product_id)->get();
-
-    	
-
+        $product = Cart::where('user_id', 1)->get();
     	return view('basket',["product"=>$product]);
     }
 
 
-    public function cart_add(Request $request)
+    public function product_item_add(Request $request)
     {
+        if (!empty($request)) 
+        {
+            $add_to_cart = new Cart;
+            $add_to_cart->user_id = '1';
+            $add_to_cart->product_id = $request->id;
+            $add_to_cart->save();
 
-    	$cart = Cart::create([
-    		'user_id'    => '1',
-    		'product_id' => $request->id
-    	]);
-
-    	$cart->save();
-
-
+            return true;
+        }
+        else
+            return false;
+    	
     }
 
 

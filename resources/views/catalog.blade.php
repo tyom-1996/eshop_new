@@ -203,156 +203,61 @@
 
 
 
-                <div class="catalog__list flex-container">
-
-
-    @if(empty($computers))
-        @foreach ($computers as $computer)
-
-        {{dd('computer')}}
-
-
-
-
-
-
-
-
-
-
-        @endforeach
-    @endif
-
-
-
-     @if(empty($Laptop))
-        @foreach ($Laptop as $Lap)
-
-
-        {{dd('Lap')}}
-
-
-
-
-
-
-
-
-
-
-        @endforeach
-    @endif
-
-
-
-
-
-
-     @if(empty($accessories))
-        @foreach ($accessories as $accessori)
-
-        {{dd('accessori')}}
-
-
-
-
-
-
-
-
-
-
-        @endforeach
-    @endif
-
-
-
-     @if(empty($peripherals))
-        @foreach ($peripherals as $peripheral)
-
-
-        {{dd('peripherals')}}
-
-
-
-
-
-
-
-
-
-        @endforeach
-    @endif
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-                    <div class="catalog__item">
-                        <a href="#" class="catalog__item-photo">
-                            <img src="images/catalog/product-1.png" alt="Фото">
-                        </a>
-
-                        <a href="#" class="catalog__item-title">
-                            USB-гарнитура с настраиваемой
-                            Razer Chroma подсветкой ушек
-                        </a>
-
-                        <div class="catalog__item-rating">
-                            <svg class="svg-icon icon-star active"><use xlink:href="images/sprite.svg#icon-star"></use></svg>
-                            <svg class="svg-icon icon-star active"><use xlink:href="images/sprite.svg#icon-star"></use></svg>
-                            <svg class="svg-icon icon-star active"><use xlink:href="images/sprite.svg#icon-star"></use></svg>
-                            <svg class="svg-icon icon-star active"><use xlink:href="images/sprite.svg#icon-star"></use></svg>
-                            <svg class="svg-icon icon-star"><use xlink:href="images/sprite.svg#icon-star"></use></svg>
-                        </div><!--catalog__item-rating-->
-
-                        <p class="catalog__item-status">
-                            В наличии
-                        </p>
-
-                        <p class="catalog__item-price">
-                            13 500 ₸
-                        </p>
-
-                        <p class="catalog__item-price catalog__item-price_old">
-                            16 000 ₸
-                        </p>
-
-                        <button class="catalog__item-add">Добавить в корзину</button>
-
-                        <div class="catalog__item-control">
-                            <a href="#" class="catalog__item-link">
-                                <svg class="svg-icon icon-product-favorite"><use xlink:href="images/sprite.svg#icon-product-favorite"></use></svg>
+                <div class="catalog__list flex-container">   
+                    @foreach ($products as $product)
+
+                        @php
+                            $photo = json_decode($product->photo)[0];
+                        @endphp
+                        
+                        <div class="catalog__item" data-value="{{ $product->id }}">
+                            <a href="#" class="catalog__item-photo">
+                                <img src="{{ asset('/storage/' . $photo) }}" alt="Фото">
                             </a>
 
-                            <a href="#" class="catalog__item-link">
-                                <svg class="svg-icon icon-product-diff"><use xlink:href="images/sprite.svg#icon-product-diff"></use></svg>
+                            <a href="#" class="catalog__item-title">
+                                {{ $product->title }}
                             </a>
 
-                            <a href="#" class="catalog__item-link">
-                                <svg class="svg-icon icon-product-view"><use xlink:href="images/sprite.svg#icon-product-view"></use></svg>
-                            </a>
+                            <div class="catalog__item-rating">
+                                <svg class="svg-icon icon-star active"><use xlink:href="{{ asset('main_front/images/sprite.svg#icon-star') }}"></use></svg>
+                                <svg class="svg-icon icon-star active"><use xlink:href="{{ asset('main_front/images/sprite.svg#icon-star') }}"></use></svg>
+                                <svg class="svg-icon icon-star active"><use xlink:href="{{ asset('main_front/images/sprite.svg#icon-star') }}"></use></svg>
+                                <svg class="svg-icon icon-star active"><use xlink:href="{{ asset('main_front/images/sprite.svg#icon-star') }}"></use></svg>
+                                <svg class="svg-icon icon-star"><use xlink:href="{{ asset('main_front/images/sprite.svg#icon-star') }}"></use></svg>
+                            </div><!--catalog__item-rating-->
 
-                        </div><!--catalog__item-control-->
+                            <p class="catalog__item-status">
+                                {{ $product->availability }}
+                            </p>
 
-                    </div><!--catalog__item-->
+                            <p class="catalog__item-price">
+                                {{ $product->price }} ₸
+                            </p>
 
+                            <p class="catalog__item-price catalog__item-price_old">
+                                {{ $product->old_price }} ₸
+                            </p>
+                            <button class="catalog__item-add p_item_add">Добавить в корзину</button>
+
+                            <div class="catalog__item-control">
+                                <a href="#" class="catalog__item-link">
+                                    <svg class="svg-icon icon-product-favorite"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-product-favorite"></use></svg>
+                                </a>
+
+                                <a href="#" class="catalog__item-link">
+                                    <svg class="svg-icon icon-product-diff"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-product-diff"></use></svg>
+                                </a>
+
+                                <a href="#" class="catalog__item-link">
+                                    <svg class="svg-icon icon-product-view"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-product-view"></use></svg>
+                                </a>
+
+                            </div><!--catalog__item-control-->
+
+                        </div><!--catalog__item-->
+                    @endforeach
                     
-
-
-
-
-
-
 
                 </div><!--catalog__list-->
 

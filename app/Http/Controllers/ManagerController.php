@@ -18,4 +18,7 @@ class ManagerController extends Controller
     	
     	return view('main', compact('products'), compact('categoris'));
     }
+
+    
+    
 }

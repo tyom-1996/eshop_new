@@ -71,8 +71,28 @@
             </div><!--social-->
 
         </div><!--footer__contacts-->
+
+
         @foreach($items as $menu_item)
-            @if ($menu_item->icon_class == 'categorias' || $menu_item->icon_class == 'information')
+            @if ($menu_item->icon_class == 'categorias')
+
+                    <div class="footer__col">
+                        <p class="footer__col-title">
+                            {{ $menu_item->title }}
+                        </p>
+
+                        <ul class="site-map">
+                            @foreach(App\CategoryProduct::get() as $is)
+                                <li>
+                                    <a href="{{ url('/category/'.preg_replace('/\s+/', '_', $is->name)) }}">{{ $is->name }}</a>
+                                </li>
+                            @endforeach
+
+                        </ul>
+
+                    </div><!--footer__col-->
+
+                @elseif($menu_item->icon_class == 'information')
                     <div class="footer__col">
                         <p class="footer__col-title">
                             {{ $menu_item->title }}

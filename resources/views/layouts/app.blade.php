@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="_token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>E-shop компьютеры и комплектующие</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -26,6 +27,7 @@
 	<script src="{{ asset('main_front/js/nouislider.min.js') }}"></script>
 	<script src="{{ asset('main_front/js/owl.carousel.min.js') }}"></script>
 	<script src="{{ asset('main_front/js/script.js') }}"></script>
+    <script src="{{ asset('main_front/js/main.js') }}"></script>
 </body>
 </html>
 
