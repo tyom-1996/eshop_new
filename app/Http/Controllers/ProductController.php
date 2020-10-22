@@ -6,71 +6,54 @@ use Illuminate\Http\Request;
 use App\CategoryProduct;
 use App\Product;
 use App\ProductImage;
-use App\Slider;
+use App\Tags;
 
 
 class ProductController extends Controller
 {
-
-	public function products_show_by_category($name)
+    // <= ======================== Products by category pages ======================== =>
+	public function products_by_category_and_tag($category, $tag)
     {
-    	$cat_id   = CategoryProduct::where('name', preg_replace('/\_+/', ' ', $name))
-    								->first('id');
-    	if (!empty($cat_id)) 
+    	$cat_id = CategoryProduct::where('name', preg_replace('/\_+/', ' ', $category))
+    								->first();
+        $tag_id = Tags::where('name', preg_replace('/\_+/', ' ', $tag))
+                        ->first('id');
+
+    	if (!empty($cat_id) && !empty($tag_id)) 
     	{
 	    	$products = Product::where('status', 'publish')
 	    						->where('cat_id', $cat_id->id)
 	    						->orderBy('created_at', 'DESC')
 	    						->get();
+                                // dd($products);
 	    	return view('catalog', compact('products'));
     	}
     	else
     		return view('errors.404');
     }
-    // public function MyProductComputers()
-    // {
-
-    // 	$computers = Product::where('cat_id','=','1')->get();
-
-    // 	return view('catalog',["computers"=>$computers]);
-    // }
+    
 
 
+    // <= ======================== Products by category pages ======================== =>
+    public function item_product_view($product_id)
+    {
+        $item_product = Product::where('id', $product_id)
+                                ->where('status', 'publish')
+                                ->first();
 
-    // public function MyProductLaptop()
-    // {
+        $products = Product::where('status', 'publish')
+                                ->where('cat_id', $item_product->cat_id)
+                                ->limit(4)
+                                ->get();
 
-    // 	$Laptop = Product::where('cat_id','=','2')->get();
+        $new_products = Product::where('status', 'publish')
+                                ->where('cat_id', '<>', $item_product->cat_id)
+                                ->orderBy('created_at', 'DESC')
+                                ->limit(4)
+                                ->get();
 
-    // 	return view('catalog',["Laptop"=>$Laptop]);
-    // }
+        // $cat
 
-
-
-    // public function MyProductAccessories()
-    // {
-    // 	$accessories = Product::where('cat_id','=','3')->get();
-
-    // 	return view('catalog',["accessories"=>$accessories]);
-    // }
-
-
-
-    //  public function MyProductPeripherals($cat_id)
-    // {
-    // 	$peripherals = Product::where('cat_id','=',$cat_id)->get();
-
-    // 	return view('catalog',["data"=>$peripherals]);
-    // }
-
-
-
-
-    //  public function MyProductService_center()
-    // {
-    // 	return view('catalog');
-    // }
-
-
-
+        return view('item_product_view', compact('item_product'), compact('products'))->with('new_products', $new_products);
+    }
 }

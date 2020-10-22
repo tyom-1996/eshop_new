@@ -19,10 +19,10 @@ class Product extends Model
     }
 
 
-    // public function product_category()
-    // {
-    //     return $this->hasMany('App\CategoryProduct', 'product_id', 'id');
-    // }
+    public function product_category()
+    {
+        return $this->hasMany('App\CategoryProduct', 'id', 'cat_id');
+    }
 
    
 

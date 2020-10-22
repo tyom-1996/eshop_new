@@ -4,16 +4,6 @@
 
     {{ slider('main slider', 'sliders.main_slider') }}
 
-    <section class="action">
-        <div class="content">
-            <p>
-                E-shop отправляет 1% от продаж на благотворительность
-            </p>
-
-        </div><!--content-->
-
-    </section><!--action-->
-
     <section class="categories content">
         <h2>
             категории товаров
@@ -22,13 +12,13 @@
         <div class="categories__list flex-container">
             @foreach ($categoris as $cat)
 
-                @if (@count(json_decode($cat->tag_id)) > 0)
+                @if (@count(json_decode($cat->category_tag_id)) > 0)
                     <div class="category category_1">
 
                         <a href="{{ url('$cat->url') }}" class="category__title">{{ $cat->name }}</a>
                         <div class="category__links">
-                            @foreach(json_decode($cat->tag_id) as $item => $tag)
-                                <a href="{{ url(App\Tags::where('id', $tag)->first('url')->url) }}" class="category__link">{{ App\Tags::where('id', $tag)->first('name')->name  }}</a>
+                            @foreach(json_decode($cat->category_tag_id) as $item => $tag)
+                                <a href="{{ url('/category/' . preg_replace('/\s+/', '_', $cat->name) . '/' . preg_replace('/\s+/', '_', App\Tags::where('id', $tag)->first('name')->name)) }}" class="category__link">{{ App\Tags::where('id', $tag)->first('name')->name  }}</a>
                             @endforeach
                         </div><!--category__links-->
 
@@ -121,11 +111,11 @@
                 @endphp
                 
                 <div class="catalog__item" data-value="{{ $product->id }}">
-                    <a href="#" class="catalog__item-photo">
+                    <a href="{{ url('/item_product_view/' . $product->id) }}" class="catalog__item-photo">
                         <img src="{{ asset('/storage/' . $photo) }}" alt="Фото">
                     </a>
 
-                    <a href="#" class="catalog__item-title">
+                    <a href="{{ url('/item_product_view/' . $product->id) }}" class="catalog__item-title">
                         {{ $product->title }}
                     </a>
 
@@ -159,7 +149,7 @@
                             <svg class="svg-icon icon-product-diff"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-product-diff"></use></svg>
                         </a>
 
-                        <a href="#" class="catalog__item-link">
+                        <a href="{{ url('/item_product_view/' . $product->id) }}" class="catalog__item-link">
                             <svg class="svg-icon icon-product-view"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-product-view"></use></svg>
                         </a>
 

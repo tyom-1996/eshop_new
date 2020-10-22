@@ -185,7 +185,7 @@
                                                                 color: #1b2653;
                                                             "
                                                         >
-                                                            Hey Smiles Davis,
+                                                            Hey {{ $name .' '. $surname }},
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -237,12 +237,33 @@
                                                                 padding-bottom: 0;
                                                                 color: #000;
                                                                 font-weight: bold;
-                                                                font-size: 24px;
+                                                                font-size: 15px;
                                                                 padding-top: 24px;
                                                                 text-align: center;
                                                             "
                                                         >
-                                                            {{ $gen_password }}
+                                                            Логин:  {{ $email }}                             
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td
+                                                            align="center"
+                                                            style="
+                                                                border-collapse: collapse !important;
+                                                                mso-table-lspace: 0pt;
+                                                                mso-table-rspace: 0pt;
+                                                                font-family: 'Roboto', sans-serif;
+                                                                padding-left: 0;
+                                                                padding-right: 0;
+                                                                padding-bottom: 0;
+                                                                color: #000;
+                                                                font-weight: bold;
+                                                                font-size: 15px;
+                                                                padding-top: 24px;
+                                                                text-align: center;
+                                                            "
+                                                        >
+                                                            Пароль: {{ $password }}                   
                                                         </td>
                                                     </tr>
                                                     <tr>

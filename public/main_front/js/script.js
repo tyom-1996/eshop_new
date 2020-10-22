@@ -56,7 +56,7 @@ $(document).ready(function() {
     });
 
     var productSlider = $('.product__slides').owlCarousel({
-        loop:true,
+        loop:false,
         items:1
     });
 
@@ -67,7 +67,7 @@ $(document).ready(function() {
 
     var productPreviews = $('.product__previews-slides').owlCarousel({
         margin:4,
-        loop:true,
+        loop:false,
         items:4
     });
 

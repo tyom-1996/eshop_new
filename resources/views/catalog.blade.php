@@ -4,11 +4,11 @@
 
     <section class="page content">
         <div class="pager">
-            <a href="#">Главная</a>
+            <a href="{{ url('/') }}">Главная</a>
             <i>/</i>
             <a href="#">Каталог</a>
             <i>/</i>
-            <span>Ноутбуки</span>
+            <span>{!! $products[0]->product_category[0]->name !!}</span>
         </div><!--pager-->
 
         <div class="catalog-page spacer_top">
@@ -164,7 +164,14 @@
 
             <div class="catalog-page__content">
                 <h1>
-                    Ноутбуки
+                    @php
+                        mb_internal_encoding("UTF-8");
+                        function mb_ucfirst($text) 
+                        {
+                            return mb_strtoupper(mb_substr($text, 0, 1)) . mb_substr($text, 1);
+                        }
+                    @endphp
+                    {!! mb_ucfirst($products[0]->product_category[0]->name) !!}
                 </h1>
 
                 <div class="catalog__panel">
@@ -204,6 +211,7 @@
 
 
                 <div class="catalog__list flex-container">   
+                   
                     @foreach ($products as $product)
 
                         @php
@@ -211,11 +219,11 @@
                         @endphp
                         
                         <div class="catalog__item" data-value="{{ $product->id }}">
-                            <a href="#" class="catalog__item-photo">
+                            <a href="{{ url('/item_product_view/' . $product->id) }}" class="catalog__item-photo">
                                 <img src="{{ asset('/storage/' . $photo) }}" alt="Фото">
                             </a>
 
-                            <a href="#" class="catalog__item-title">
+                            <a href="{{ url('/item_product_view/' . $product->id) }}" class="catalog__item-title">
                                 {{ $product->title }}
                             </a>
 
@@ -249,7 +257,7 @@
                                     <svg class="svg-icon icon-product-diff"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-product-diff"></use></svg>
                                 </a>
 
-                                <a href="#" class="catalog__item-link">
+                                <a href="{{ url('/item_product_view/' . $product->id) }}" class="catalog__item-link">
                                     <svg class="svg-icon icon-product-view"><use xlink:href="{{ asset('main_front/images/sprite.svg') }}#icon-product-view"></use></svg>
                                 </a>
 
@@ -257,7 +265,6 @@
 
                         </div><!--catalog__item-->
                     @endforeach
-                    
 
                 </div><!--catalog__list-->
 

@@ -8,6 +8,7 @@ use App\ProductImage;
 
 class CartController extends Controller
 {
+    // <= ======================== Cart page ======================== =>
     public function cart()
     {
         $product = Cart::where('user_id', 1)->get();
@@ -15,6 +16,8 @@ class CartController extends Controller
     }
 
 
+
+    // <= ======================== Add product to cart ======================== =>
     public function product_item_add(Request $request)
     {
         if (!empty($request)) 
